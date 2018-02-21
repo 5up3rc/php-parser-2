@@ -21,7 +21,7 @@ func TestConstFetch(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 		},
@@ -41,7 +41,7 @@ func TestConstFetchRelative(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.Relative{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.Relative{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 		},
@@ -61,7 +61,7 @@ func TestConstFetchFullyQualified(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.FullyQualified{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.FullyQualified{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 		},

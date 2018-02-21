@@ -7,19 +7,23 @@ import (
 
 // Name node
 type Name struct {
-	Parts []node.Node
+	NamespacedName string
+	Parts          []node.Node
 }
 
 // NewName node constuctor
-func NewName(Parts []node.Node) *Name {
+func NewName(Parts []node.Node, NamespacedName string) *Name {
 	return &Name{
+		NamespacedName,
 		Parts,
 	}
 }
 
 // Attributes returns node attributes as map
 func (n *Name) Attributes() map[string]interface{} {
-	return nil
+	return map[string]interface{}{
+		"NamespacedName": n.NamespacedName,
+	}
 }
 
 // Walk traverses nodes

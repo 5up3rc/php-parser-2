@@ -21,7 +21,7 @@ func TestClassConstFetch(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.ClassConstFetch{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},

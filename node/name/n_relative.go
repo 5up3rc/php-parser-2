@@ -7,19 +7,23 @@ import (
 
 // Relative node
 type Relative struct {
-	Parts []node.Node
+	NamespacedName string
+	Parts          []node.Node
 }
 
 // NewRelative node constuctor
-func NewRelative(Parts []node.Node) *Relative {
+func NewRelative(Parts []node.Node, NamespacedName string) *Relative {
 	return &Relative{
+		NamespacedName,
 		Parts,
 	}
 }
 
 // Attributes returns node attributes as map
 func (n *Relative) Attributes() map[string]interface{} {
-	return nil
+	return map[string]interface{}{
+		"NamespacedName": n.NamespacedName,
+	}
 }
 
 // Walk traverses nodes

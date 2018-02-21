@@ -35,7 +35,7 @@ func TestName(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Name{
+					Function: &name.Name{NamespacedName: "",
 						Parts: []node.Node{&name.NamePart{Value: "foo"}},
 					},
 					Arguments: []node.Node{},
@@ -58,7 +58,7 @@ func TestFullyQualified(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.FullyQualified{
+					Function: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{&name.NamePart{Value: "foo"}},
 					},
 					Arguments: []node.Node{},
@@ -81,7 +81,7 @@ func TestRelative(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Relative{
+					Function: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{&name.NamePart{Value: "foo"}},
 					},
 					Arguments: []node.Node{},

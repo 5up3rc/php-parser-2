@@ -96,7 +96,7 @@ var nodesToTest = []struct {
 			PhpDocComment: "",
 			Params:        []node.Node{&node.Parameter{}},
 			Uses:          []node.Node{&expr.ClosureUse{}},
-			ReturnType:    &name.Name{},
+			ReturnType:    &name.Name{NamespacedName: ""},
 			Stmts:         []node.Node{&stmt.Nop{}},
 		},
 		[]string{"Params", "Uses", "ReturnType", "Stmts"},
@@ -169,7 +169,7 @@ var nodesToTest = []struct {
 	{
 		&expr.InstanceOf{
 			Expr:  &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-			Class: &name.Name{},
+			Class: &name.Name{NamespacedName: ""},
 		},
 		[]string{"Expr", "Class"},
 		map[string]interface{}{},
@@ -203,7 +203,7 @@ var nodesToTest = []struct {
 	},
 	{
 		&expr.New{
-			Class:     &name.Name{},
+			Class:     &name.Name{NamespacedName: ""},
 			Arguments: []node.Node{&node.Argument{}},
 		},
 		[]string{"Class", "Arguments"},
@@ -295,7 +295,7 @@ var nodesToTest = []struct {
 	},
 	{
 		&expr.StaticCall{
-			Class:     &name.Name{},
+			Class:     &name.Name{NamespacedName: ""},
 			Call:      &node.Identifier{Value: "foo"},
 			Arguments: []node.Node{&node.Argument{}},
 		},
@@ -304,7 +304,7 @@ var nodesToTest = []struct {
 	},
 	{
 		&expr.StaticPropertyFetch{
-			Class:    &name.Name{},
+			Class:    &name.Name{NamespacedName: ""},
 			Property: &node.Identifier{Value: "foo"},
 		},
 		[]string{"Class", "Property"},

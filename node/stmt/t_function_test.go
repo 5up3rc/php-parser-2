@@ -131,7 +131,7 @@ func TestReturnTypeFunction(t *testing.T) {
 				ReturnsRef:    true,
 				PhpDocComment: "",
 				FunctionName:  &node.Identifier{Value: "foo"},
-				ReturnType: &name.Name{
+				ReturnType: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "void"},
 					},

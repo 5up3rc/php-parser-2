@@ -118,7 +118,7 @@ func TestPhp7ClassMethod(t *testing.T) {
 							&node.Identifier{Value: "public"},
 							&node.Identifier{Value: "static"},
 						},
-						ReturnType: &name.Name{
+						ReturnType: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "void"},
 							},
@@ -180,7 +180,7 @@ func TestPhp7AbstractClassMethod(t *testing.T) {
 						Modifiers: []node.Node{
 							&node.Identifier{Value: "public"},
 						},
-						ReturnType: &name.Name{
+						ReturnType: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "void"},
 							},

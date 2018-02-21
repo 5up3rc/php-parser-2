@@ -17,7 +17,7 @@ func TestNamespace(t *testing.T) {
 	expected := &stmt.StmtList{
 		Stmts: []node.Node{
 			&stmt.Namespace{
-				NamespaceName: &name.Name{
+				NamespaceName: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
@@ -39,7 +39,7 @@ func TestNamespaceStmts(t *testing.T) {
 	expected := &stmt.StmtList{
 		Stmts: []node.Node{
 			&stmt.Namespace{
-				NamespaceName: &name.Name{
+				NamespaceName: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},

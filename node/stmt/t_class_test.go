@@ -63,7 +63,7 @@ func TestClassExtends(t *testing.T) {
 				Modifiers: []node.Node{
 					&node.Identifier{Value: "final"},
 				},
-				Extends: &name.Name{
+				Extends: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "bar"},
 					},
@@ -91,7 +91,7 @@ func TestClassImplement(t *testing.T) {
 					&node.Identifier{Value: "final"},
 				},
 				Implements: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "bar"},
 						},
@@ -120,12 +120,12 @@ func TestClassImplements(t *testing.T) {
 					&node.Identifier{Value: "final"},
 				},
 				Implements: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "bar"},
 						},
 					},
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "baz"},
 						},
@@ -152,18 +152,18 @@ func TestAnonimousClass(t *testing.T) {
 				Expr: &expr.New{
 					Class: &stmt.Class{
 						Args: []node.Node{},
-						Extends: &name.Name{
+						Extends: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "foo"},
 							},
 						},
 						Implements: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "baz"},
 								},

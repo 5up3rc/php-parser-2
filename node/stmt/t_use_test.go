@@ -19,7 +19,7 @@ func TestSimpleUse(t *testing.T) {
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -45,7 +45,7 @@ func TestUseFullyQualified(t *testing.T) {
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -71,7 +71,7 @@ func TestUseFullyQualifiedAlias(t *testing.T) {
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -98,14 +98,14 @@ func TestUseList(t *testing.T) {
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -131,14 +131,14 @@ func TestUseListAlias(t *testing.T) {
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -166,14 +166,14 @@ func TestUseListFunctionType(t *testing.T) {
 				UseType: &node.Identifier{Value: "function"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -200,7 +200,7 @@ func TestUseListFunctionTypeAliases(t *testing.T) {
 				UseType: &node.Identifier{Value: "function"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -208,7 +208,7 @@ func TestUseListFunctionTypeAliases(t *testing.T) {
 						Alias: &node.Identifier{Value: "foo"},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -236,14 +236,14 @@ func TestUseListConstType(t *testing.T) {
 				UseType: &node.Identifier{Value: "const"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -270,7 +270,7 @@ func TestUseListConstTypeAliases(t *testing.T) {
 				UseType: &node.Identifier{Value: "const"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -278,7 +278,7 @@ func TestUseListConstTypeAliases(t *testing.T) {
 						Alias: &node.Identifier{Value: "foo"},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -303,21 +303,21 @@ func TestGroupUse(t *testing.T) {
 	expected := &stmt.StmtList{
 		Stmts: []node.Node{
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -338,21 +338,21 @@ func TestGroupUseAlias(t *testing.T) {
 	expected := &stmt.StmtList{
 		Stmts: []node.Node{
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -375,21 +375,21 @@ func TestFunctionGroupUse(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.GroupUse{
 				UseType: &node.Identifier{Value: "function"},
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -411,21 +411,21 @@ func TestConstGroupUse(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.GroupUse{
 				UseType: &node.Identifier{Value: "const"},
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -446,7 +446,7 @@ func TestMixedGroupUse(t *testing.T) {
 	expected := &stmt.StmtList{
 		Stmts: []node.Node{
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
@@ -454,7 +454,7 @@ func TestMixedGroupUse(t *testing.T) {
 				UseList: []node.Node{
 					&stmt.Use{
 						UseType: &node.Identifier{Value: "const"},
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -462,7 +462,7 @@ func TestMixedGroupUse(t *testing.T) {
 					},
 					&stmt.Use{
 						UseType: &node.Identifier{Value: "function"},
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},

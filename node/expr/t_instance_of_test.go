@@ -22,7 +22,7 @@ func TestInstanceOf(t *testing.T) {
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -47,7 +47,7 @@ func TestInstanceOfRelative(t *testing.T) {
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -72,7 +72,7 @@ func TestInstanceOfFullyQualified(t *testing.T) {
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},

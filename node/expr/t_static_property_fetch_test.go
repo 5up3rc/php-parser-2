@@ -20,7 +20,7 @@ func TestStaticPropertyFetch(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -45,7 +45,7 @@ func TestStaticPropertyFetchRelative(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -70,7 +70,7 @@ func TestStaticPropertyFetchFullyQualified(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},

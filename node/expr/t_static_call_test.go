@@ -21,7 +21,7 @@ func TestStaticCall(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -47,7 +47,7 @@ func TestStaticCallRelative(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -73,7 +73,7 @@ func TestStaticCallFullyQualified(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -99,7 +99,7 @@ func TestStaticCallVar(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},

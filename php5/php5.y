@@ -275,7 +275,7 @@ top_statement:
             }
     |   T_NAMESPACE namespace_name ';'
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewNamespace(name, nil)
                 positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $3))
@@ -285,7 +285,7 @@ top_statement:
             }
     |   T_NAMESPACE namespace_name '{' top_statement_list '}'
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewNamespace(name, $4)
                 positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $5))
@@ -339,7 +339,7 @@ use_declarations:
 use_declaration:
         namespace_name
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
@@ -349,7 +349,7 @@ use_declaration:
             }
     |   namespace_name T_AS T_STRING
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 alias := node.NewIdentifier($3.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($3))
@@ -362,7 +362,7 @@ use_declaration:
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($2))
@@ -372,7 +372,7 @@ use_declaration:
             }
     |   T_NS_SEPARATOR namespace_name T_AS T_STRING
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 alias := node.NewIdentifier($4.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($4))
@@ -395,7 +395,7 @@ use_function_declarations:
 use_function_declaration:
         namespace_name
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
@@ -405,7 +405,7 @@ use_function_declaration:
             }
     |   namespace_name T_AS T_STRING
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 alias := node.NewIdentifier($3.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($3))
@@ -418,7 +418,7 @@ use_function_declaration:
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($2))
@@ -428,7 +428,7 @@ use_function_declaration:
             }
     |   T_NS_SEPARATOR namespace_name T_AS T_STRING
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 alias := node.NewIdentifier($4.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($4))
@@ -451,7 +451,7 @@ use_const_declarations:
 use_const_declaration:
         namespace_name
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
@@ -461,7 +461,7 @@ use_const_declaration:
             }
     |   namespace_name T_AS T_STRING
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 alias := node.NewIdentifier($3.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($3))
@@ -474,7 +474,7 @@ use_const_declaration:
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewUse(nil, name, nil)
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($2))
@@ -484,7 +484,7 @@ use_const_declaration:
             }
     |   T_NS_SEPARATOR namespace_name T_AS T_STRING
             {
-                name := name.NewName($2)
+                name := name.NewName($2, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 alias := node.NewIdentifier($4.Value)
                 positions.AddPosition(alias, positionBuilder.NewTokenPosition($4))
@@ -2462,7 +2462,7 @@ lexical_var_list:
 function_call:
         namespace_name function_call_parameter_list
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 comments.AddComments(name, ListGetFirstNodeComments($1))
 
@@ -2472,7 +2472,7 @@ function_call:
             }
     |   T_NAMESPACE T_NS_SEPARATOR namespace_name function_call_parameter_list
             {
-                funcName := name.NewRelative($3)
+                funcName := name.NewRelative($3, "")
                 positions.AddPosition(funcName, positionBuilder.NewTokenNodeListPosition($1, $3))
                 comments.AddComments(funcName, $1.Comments())
 
@@ -2482,7 +2482,7 @@ function_call:
             }
     |   T_NS_SEPARATOR namespace_name function_call_parameter_list
             {
-                funcName := name.NewFullyQualified($2)
+                funcName := name.NewFullyQualified($2, "")
                 positions.AddPosition(funcName, positionBuilder.NewTokenNodeListPosition($1, $2))
                 comments.AddComments(funcName, $1.Comments())
 
@@ -2531,19 +2531,19 @@ class_name:
             }
     |   namespace_name 
             {
-                $$ = name.NewName($1)
+                $$ = name.NewName($1, "")
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
                 comments.AddComments($$, ListGetFirstNodeComments($1))
             }
     |   T_NAMESPACE T_NS_SEPARATOR namespace_name
             {
-                $$ = name.NewRelative($3)
+                $$ = name.NewRelative($3, "")
                 positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $3))
                 comments.AddComments($$, $1.Comments())
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                $$ = name.NewFullyQualified($2)
+                $$ = name.NewFullyQualified($2, "")
                 positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $2))
                 comments.AddComments($$, $1.Comments())
             }
@@ -2552,19 +2552,19 @@ class_name:
 fully_qualified_class_name:
         namespace_name
             {
-                $$ = name.NewName($1)
+                $$ = name.NewName($1, "")
                 positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
                 comments.AddComments($$, ListGetFirstNodeComments($1))
             }
     |   T_NAMESPACE T_NS_SEPARATOR namespace_name
             {
-                $$ = name.NewRelative($3)
+                $$ = name.NewRelative($3, "")
                 positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $3))
                 comments.AddComments($$, $1.Comments())
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                $$ = name.NewFullyQualified($2)
+                $$ = name.NewFullyQualified($2, "")
                 positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $2))
                 comments.AddComments($$, $1.Comments())
             }
@@ -2757,7 +2757,7 @@ static_scalar_value:
             { $$ = $1 }
     |   namespace_name
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 comments.AddComments(name, ListGetFirstNodeComments($1))
 
@@ -2767,7 +2767,7 @@ static_scalar_value:
             }
     |   T_NAMESPACE T_NS_SEPARATOR namespace_name
             {
-                name := name.NewRelative($3)
+                name := name.NewRelative($3, "")
                 positions.AddPosition(name, positionBuilder.NewTokenNodeListPosition($1, $3))
                 comments.AddComments(name, $1.Comments())
 
@@ -2777,7 +2777,7 @@ static_scalar_value:
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                name := name.NewFullyQualified($2)
+                name := name.NewFullyQualified($2, "")
                 positions.AddPosition(name, positionBuilder.NewTokenNodeListPosition($1, $2))
                 comments.AddComments(name, $1.Comments())
 
@@ -3011,7 +3011,7 @@ general_constant:
             { $$ = $1 }
     |   namespace_name
             {
-                name := name.NewName($1)
+                name := name.NewName($1, "")
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 comments.AddComments(name, ListGetFirstNodeComments($1))
 
@@ -3021,7 +3021,7 @@ general_constant:
             }
     |   T_NAMESPACE T_NS_SEPARATOR namespace_name
             {
-                name := name.NewRelative($3)
+                name := name.NewRelative($3, "")
                 positions.AddPosition(name, positionBuilder.NewTokenNodeListPosition($1, $3))
                 comments.AddComments(name, $1.Comments())
 
@@ -3031,7 +3031,7 @@ general_constant:
             }
     |   T_NS_SEPARATOR namespace_name
             {
-                name := name.NewFullyQualified($2)
+                name := name.NewFullyQualified($2, "")
                 positions.AddPosition(name, positionBuilder.NewTokenNodeListPosition($1, $2))
                 comments.AddComments(name, $1.Comments())
 

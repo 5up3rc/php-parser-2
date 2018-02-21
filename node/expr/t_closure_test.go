@@ -139,7 +139,7 @@ func TestClosureReturnType(t *testing.T) {
 					Static:        false,
 					PhpDocComment: "",
 					Uses:          []node.Node{},
-					ReturnType: &name.Name{
+					ReturnType: &name.Name{NamespacedName: "",
 						Parts: []node.Node{&name.NamePart{Value: "void"}},
 					},
 					Stmts: []node.Node{},

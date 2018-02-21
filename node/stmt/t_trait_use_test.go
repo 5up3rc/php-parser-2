@@ -22,7 +22,7 @@ func TestTraitUse(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
@@ -52,12 +52,12 @@ func TestTraitsUse(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -87,12 +87,12 @@ func TestTraitsUseEmptyAdaptations(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -122,12 +122,12 @@ func TestTraitsUseModifier(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -165,12 +165,12 @@ func TestTraitsUseAliasModifier(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -209,12 +209,12 @@ func TestTraitsUseAdaptions(t *testing.T) {
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -223,7 +223,7 @@ func TestTraitsUseAdaptions(t *testing.T) {
 						Adaptations: []node.Node{
 							&stmt.TraitUsePrecedence{
 								Ref: &stmt.TraitMethodRef{
-									Trait: &name.Name{
+									Trait: &name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Bar"},
 										},
@@ -231,12 +231,12 @@ func TestTraitsUseAdaptions(t *testing.T) {
 									Method: &node.Identifier{Value: "one"},
 								},
 								Insteadof: []node.Node{
-									&name.Name{
+									&name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Baz"},
 										},
 									},
-									&name.Name{
+									&name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Quux"},
 										},
@@ -245,7 +245,7 @@ func TestTraitsUseAdaptions(t *testing.T) {
 							},
 							&stmt.TraitUseAlias{
 								Ref: &stmt.TraitMethodRef{
-									Trait: &name.Name{
+									Trait: &name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Baz"},
 										},

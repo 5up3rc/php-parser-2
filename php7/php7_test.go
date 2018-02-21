@@ -409,14 +409,14 @@ CAD;
 		&node.Parameter{
 			ByRef:        false,
 			Variadic:     false,
-			VariableType: &node.Nullable{Expr: &name.Name{Parts: []node.Node{&name.NamePart{Value: "bar"}}}},
+			VariableType: &node.Nullable{Expr: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "bar"}}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$bar"}},
-			DefaultValue: &expr.ConstFetch{Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "null"}}}},
+			DefaultValue: &expr.ConstFetch{Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "null"}}}},
 		},
 		&node.Parameter{
 			ByRef:        true,
 			Variadic:     true,
-			VariableType: &name.Name{Parts: []node.Node{&name.NamePart{Value: "baz"}}},
+			VariableType: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "baz"}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$baz"}},
 		},
 	}
@@ -425,7 +425,7 @@ CAD;
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Function: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -453,7 +453,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Call:  &node.Identifier{Value: "bar"},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
@@ -473,7 +473,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -941,7 +941,7 @@ CAD;
 							&node.Identifier{Value: "public"},
 							&node.Identifier{Value: "static"},
 						},
-						ReturnType: &name.Name{
+						ReturnType: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "void"},
 							},
@@ -962,7 +962,7 @@ CAD;
 				Modifiers: []node.Node{
 					&node.Identifier{Value: "final"},
 				},
-				Extends: &name.Name{
+				Extends: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "bar"},
 					},
@@ -975,7 +975,7 @@ CAD;
 					&node.Identifier{Value: "final"},
 				},
 				Implements: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "bar"},
 						},
@@ -989,12 +989,12 @@ CAD;
 					&node.Identifier{Value: "final"},
 				},
 				Implements: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "bar"},
 						},
 					},
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "baz"},
 						},
@@ -1006,18 +1006,18 @@ CAD;
 				Expr: &expr.New{
 					Class: &stmt.Class{
 						Args: []node.Node{},
-						Extends: &name.Name{
+						Extends: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "foo"},
 							},
 						},
 						Implements: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "baz"},
 								},
@@ -1243,7 +1243,7 @@ CAD;
 				ReturnsRef:    true,
 				PhpDocComment: "",
 				FunctionName:  &node.Identifier{Value: "foo"},
-				ReturnType: &name.Name{
+				ReturnType: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "void"},
 					},
@@ -1331,7 +1331,7 @@ CAD;
 				PhpDocComment: "",
 				InterfaceName: &node.Identifier{Value: "Foo"},
 				Extends: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Bar"},
 						},
@@ -1343,12 +1343,12 @@ CAD;
 				PhpDocComment: "",
 				InterfaceName: &node.Identifier{Value: "Foo"},
 				Extends: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Bar"},
 						},
 					},
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Baz"},
 						},
@@ -1357,14 +1357,14 @@ CAD;
 				Stmts: []node.Node{},
 			},
 			&stmt.Namespace{
-				NamespaceName: &name.Name{
+				NamespaceName: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 			},
 			&stmt.Namespace{
-				NamespaceName: &name.Name{
+				NamespaceName: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
@@ -1500,7 +1500,7 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
@@ -1515,12 +1515,12 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -1535,12 +1535,12 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -1563,12 +1563,12 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -1591,12 +1591,12 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -1620,12 +1620,12 @@ CAD;
 				Stmts: []node.Node{
 					&stmt.TraitUse{
 						Traits: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Bar"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Baz"},
 								},
@@ -1634,7 +1634,7 @@ CAD;
 						Adaptations: []node.Node{
 							&stmt.TraitUsePrecedence{
 								Ref: &stmt.TraitMethodRef{
-									Trait: &name.Name{
+									Trait: &name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Bar"},
 										},
@@ -1642,12 +1642,12 @@ CAD;
 									Method: &node.Identifier{Value: "one"},
 								},
 								Insteadof: []node.Node{
-									&name.Name{
+									&name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Baz"},
 										},
 									},
-									&name.Name{
+									&name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Quux"},
 										},
@@ -1656,7 +1656,7 @@ CAD;
 							},
 							&stmt.TraitUseAlias{
 								Ref: &stmt.TraitMethodRef{
-									Trait: &name.Name{
+									Trait: &name.Name{NamespacedName: "",
 										Parts: []node.Node{
 											&name.NamePart{Value: "Baz"},
 										},
@@ -1678,7 +1678,7 @@ CAD;
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -1696,12 +1696,12 @@ CAD;
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "RuntimeException"},
 								},
@@ -1719,7 +1719,7 @@ CAD;
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -1732,7 +1732,7 @@ CAD;
 					},
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "RuntimeException"},
 								},
@@ -1750,7 +1750,7 @@ CAD;
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -1775,7 +1775,7 @@ CAD;
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -1786,7 +1786,7 @@ CAD;
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -1797,7 +1797,7 @@ CAD;
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -1809,14 +1809,14 @@ CAD;
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1827,14 +1827,14 @@ CAD;
 			&stmt.UseList{
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1847,14 +1847,14 @@ CAD;
 				UseType: &node.Identifier{Value: "function"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1866,7 +1866,7 @@ CAD;
 				UseType: &node.Identifier{Value: "function"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -1874,7 +1874,7 @@ CAD;
 						Alias: &node.Identifier{Value: "foo"},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1887,14 +1887,14 @@ CAD;
 				UseType: &node.Identifier{Value: "const"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1906,7 +1906,7 @@ CAD;
 				UseType: &node.Identifier{Value: "const"},
 				Uses: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -1914,7 +1914,7 @@ CAD;
 						Alias: &node.Identifier{Value: "foo"},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -1924,21 +1924,21 @@ CAD;
 				},
 			},
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -1947,21 +1947,21 @@ CAD;
 				},
 			},
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -1972,21 +1972,21 @@ CAD;
 			},
 			&stmt.GroupUse{
 				UseType: &node.Identifier{Value: "function"},
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -1996,21 +1996,21 @@ CAD;
 			},
 			&stmt.GroupUse{
 				UseType: &node.Identifier{Value: "const"},
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
 				},
 				UseList: []node.Node{
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
 						},
 					},
 					&stmt.Use{
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -2019,7 +2019,7 @@ CAD;
 				},
 			},
 			&stmt.GroupUse{
-				Prefix: &name.Name{
+				Prefix: &name.Name{NamespacedName: "",
 					Parts: []node.Node{
 						&name.NamePart{Value: "Foo"},
 					},
@@ -2027,7 +2027,7 @@ CAD;
 				UseList: []node.Node{
 					&stmt.Use{
 						UseType: &node.Identifier{Value: "const"},
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Bar"},
 							},
@@ -2035,7 +2035,7 @@ CAD;
 					},
 					&stmt.Use{
 						UseType: &node.Identifier{Value: "function"},
-						Use: &name.Name{
+						Use: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Baz"},
 							},
@@ -2100,7 +2100,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.ClassConstFetch{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2169,7 +2169,7 @@ CAD;
 					Static:        false,
 					PhpDocComment: "",
 					Uses:          []node.Node{},
-					ReturnType: &name.Name{
+					ReturnType: &name.Name{NamespacedName: "",
 						Parts: []node.Node{&name.NamePart{Value: "void"}},
 					},
 					Stmts: []node.Node{},
@@ -2177,17 +2177,17 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.Relative{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.Relative{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 			&stmt.Expression{
 				Expr: &expr.ConstFetch{
-					Constant: &name.FullyQualified{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Constant: &name.FullyQualified{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 				},
 			},
 			&stmt.Expression{
@@ -2223,7 +2223,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Name{
+					Function: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "foo"},
 						},
@@ -2233,7 +2233,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Relative{
+					Function: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "foo"},
 						},
@@ -2243,7 +2243,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.FullyQualified{
+					Function: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "foo"},
 						},
@@ -2300,7 +2300,7 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2310,7 +2310,7 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2320,7 +2320,7 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.InstanceOf{
 					Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2392,7 +2392,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2402,7 +2402,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2412,7 +2412,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2543,7 +2543,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2554,7 +2554,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2565,7 +2565,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2576,7 +2576,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.Name{
+					Class: &name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2592,7 +2592,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.Relative{
+					Class: &name.Relative{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2602,7 +2602,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticPropertyFetch{
-					Class: &name.FullyQualified{
+					Class: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Foo"},
 						},
@@ -2985,7 +2985,7 @@ CAD;
 			},
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.FullyQualified{
+					Function: &name.FullyQualified{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "foo"},
 							&name.NamePart{Value: "bar"},
@@ -3098,7 +3098,7 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.PropertyFetch{
 					Variable: &expr.New{
-						Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
+						Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
 					},
 					Property: &node.Identifier{Value: "bar"},
 				},
@@ -3106,7 +3106,7 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
 					Function: &expr.New{
-						Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
+						Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
 					},
 					Arguments: []node.Node{},
 				},
@@ -3131,7 +3131,7 @@ CAD;
 				Expr: &expr.FunctionCall{
 					Function: &expr.ArrayDimFetch{
 						Variable: &expr.ConstFetch{
-							Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+							Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 						},
 						Dim: &scalar.Lnumber{Value: "1"},
 					},
@@ -3163,21 +3163,21 @@ CAD;
 			&stmt.Expression{
 				Expr: &expr.Variable{
 					VarName: &expr.FunctionCall{
-						Function:  &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+						Function:  &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 						Arguments: []node.Node{},
 					},
 				},
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class:     &name.Name{Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
+					Class:     &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
 					Call:      &expr.Variable{VarName: &node.Identifier{Value: "$bar"}},
 					Arguments: []node.Node{},
 				},
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "Foo"}}},
 					Call: &expr.ArrayDimFetch{
 						Variable: &expr.Variable{VarName: &node.Identifier{Value: "$bar"}},
 						Dim:      &scalar.Lnumber{Value: "0"},

@@ -40,7 +40,7 @@ func TestInterfaceExtend(t *testing.T) {
 				PhpDocComment: "",
 				InterfaceName: &node.Identifier{Value: "Foo"},
 				Extends: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Bar"},
 						},
@@ -67,12 +67,12 @@ func TestInterfaceExtends(t *testing.T) {
 				PhpDocComment: "",
 				InterfaceName: &node.Identifier{Value: "Foo"},
 				Extends: []node.Node{
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Bar"},
 						},
 					},
-					&name.Name{
+					&name.Name{NamespacedName: "",
 						Parts: []node.Node{
 							&name.NamePart{Value: "Baz"},
 						},

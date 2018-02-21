@@ -45,7 +45,7 @@ func TestTryCatch(t *testing.T) {
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -80,12 +80,12 @@ func TestPhp7TryCatch(t *testing.T) {
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
 							},
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "RuntimeException"},
 								},
@@ -117,7 +117,7 @@ func TestTryCatchCatch(t *testing.T) {
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -130,7 +130,7 @@ func TestTryCatchCatch(t *testing.T) {
 					},
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "RuntimeException"},
 								},
@@ -165,7 +165,7 @@ func TestTryCatchFinally(t *testing.T) {
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -201,7 +201,7 @@ func TestTryCatchCatchCatch(t *testing.T) {
 				Catches: []node.Node{
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Name{
+							&name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "Exception"},
 								},
@@ -214,7 +214,7 @@ func TestTryCatchCatchCatch(t *testing.T) {
 					},
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.FullyQualified{
+							&name.FullyQualified{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "RuntimeException"},
 								},
@@ -227,7 +227,7 @@ func TestTryCatchCatchCatch(t *testing.T) {
 					},
 					&stmt.Catch{
 						Types: []node.Node{
-							&name.Relative{
+							&name.Relative{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "AdditionException"},
 								},

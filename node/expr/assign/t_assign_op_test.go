@@ -59,7 +59,7 @@ func TestAssignRefNew(t *testing.T) {
 				Expr: &assign.AssignRef{
 					Variable: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
 					Expression: &expr.New{
-						Class: &name.Name{
+						Class: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},
@@ -86,7 +86,7 @@ func TestAssignRefArgs(t *testing.T) {
 				Expr: &assign.AssignRef{
 					Variable: &expr.Variable{VarName: &node.Identifier{Value: "$a"}},
 					Expression: &expr.New{
-						Class: &name.Name{
+						Class: &name.Name{NamespacedName: "",
 							Parts: []node.Node{
 								&name.NamePart{Value: "Foo"},
 							},

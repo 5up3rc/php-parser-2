@@ -65,7 +65,7 @@ func TestPhp7ArgumentNode(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Function: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -93,7 +93,7 @@ func TestPhp7ArgumentNode(t *testing.T) {
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Call:  &node.Identifier{Value: "bar"},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
@@ -113,7 +113,7 @@ func TestPhp7ArgumentNode(t *testing.T) {
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -153,7 +153,7 @@ func TestPhp5ArgumentNode(t *testing.T) {
 		Stmts: []node.Node{
 			&stmt.Expression{
 				Expr: &expr.FunctionCall{
-					Function: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Function: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -181,7 +181,7 @@ func TestPhp5ArgumentNode(t *testing.T) {
 			},
 			&stmt.Expression{
 				Expr: &expr.StaticCall{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Call:  &node.Identifier{Value: "bar"},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
@@ -201,7 +201,7 @@ func TestPhp5ArgumentNode(t *testing.T) {
 			},
 			&stmt.Expression{
 				Expr: &expr.New{
-					Class: &name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+					Class: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 					Arguments: []node.Node{
 						&node.Argument{Variadic: false, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$a"}}},
 						&node.Argument{Variadic: true, Expr: &expr.Variable{VarName: &node.Identifier{Value: "$b"}}},
@@ -227,14 +227,14 @@ func TestPhp7ParameterNode(t *testing.T) {
 		&node.Parameter{
 			ByRef:        false,
 			Variadic:     false,
-			VariableType: &node.Nullable{Expr: &name.Name{Parts: []node.Node{&name.NamePart{Value: "bar"}}}},
+			VariableType: &node.Nullable{Expr: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "bar"}}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$bar"}},
-			DefaultValue: &expr.ConstFetch{Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "null"}}}},
+			DefaultValue: &expr.ConstFetch{Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "null"}}}},
 		},
 		&node.Parameter{
 			ByRef:        true,
 			Variadic:     true,
-			VariableType: &name.Name{Parts: []node.Node{&name.NamePart{Value: "baz"}}},
+			VariableType: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "baz"}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$baz"}},
 		},
 	}
@@ -293,14 +293,14 @@ func TestPhp5ParameterNode(t *testing.T) {
 		&node.Parameter{
 			ByRef:        false,
 			Variadic:     false,
-			VariableType: &name.Name{Parts: []node.Node{&name.NamePart{Value: "bar"}}},
+			VariableType: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "bar"}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$bar"}},
-			DefaultValue: &expr.ConstFetch{Constant: &name.Name{Parts: []node.Node{&name.NamePart{Value: "null"}}}},
+			DefaultValue: &expr.ConstFetch{Constant: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "null"}}}},
 		},
 		&node.Parameter{
 			ByRef:        true,
 			Variadic:     true,
-			VariableType: &name.Name{Parts: []node.Node{&name.NamePart{Value: "baz"}}},
+			VariableType: &name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "baz"}}},
 			Variable:     &expr.Variable{VarName: &node.Identifier{Value: "$baz"}},
 		},
 	}

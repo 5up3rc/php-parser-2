@@ -2,11 +2,13 @@ PHPFILE=example.php
 
 all: compile run
 
-build:
+fmt:
 	find . -type f -iregex '.*\.go' -exec gofmt -l -s -w '{}' +
+
+build:
 	go build
 
-run: build
+run:
 	./php-parser $(PHPFILE)
 
 test:
@@ -16,7 +18,7 @@ bench:
 	go test -benchmem -bench=. ./php5
 	go test -benchmem -bench=. ./php7
 
-compile: ./php5/php5.go ./php7/php7.go ./scanner/scanner.go
+compile: ./php5/php5.go ./php7/php7.go ./scanner/scanner.go fmt
 	rm -f y.output
 
 ./scanner/scanner.go: ./scanner/scanner.l

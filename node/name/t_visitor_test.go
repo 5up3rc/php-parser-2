@@ -17,19 +17,19 @@ var nameNodesTests = []struct {
 	expectedAttributes  map[string]interface{}
 }{
 	{
-		&name.Name{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+		&name.Name{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 		[]string{"Parts"},
-		nil,
+		map[string]interface{}{"NamespacedName": ""},
 	},
 	{
-		&name.FullyQualified{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+		&name.FullyQualified{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 		[]string{"Parts"},
-		nil,
+		map[string]interface{}{"NamespacedName": ""},
 	},
 	{
-		&name.Relative{Parts: []node.Node{&name.NamePart{Value: "foo"}}},
+		&name.Relative{NamespacedName: "", Parts: []node.Node{&name.NamePart{Value: "foo"}}},
 		[]string{"Parts"},
-		nil,
+		map[string]interface{}{"NamespacedName": ""},
 	},
 	{
 		&name.NamePart{Value: "foo"},

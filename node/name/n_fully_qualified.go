@@ -7,19 +7,23 @@ import (
 
 // FullyQualified node
 type FullyQualified struct {
-	Parts []node.Node
+	NamespacedName string
+	Parts          []node.Node
 }
 
 // NewFullyQualified node constuctor
-func NewFullyQualified(Parts []node.Node) *FullyQualified {
+func NewFullyQualified(Parts []node.Node, NamespacedName string) *FullyQualified {
 	return &FullyQualified{
+		NamespacedName,
 		Parts,
 	}
 }
 
 // Attributes returns node attributes as map
 func (n *FullyQualified) Attributes() map[string]interface{} {
-	return nil
+	return map[string]interface{}{
+		"NamespacedName": n.NamespacedName,
+	}
 }
 
 // Walk traverses nodes

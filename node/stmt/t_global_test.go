@@ -44,7 +44,7 @@ func TestGlobalVars(t *testing.T) {
 					&expr.Variable{VarName: &expr.Variable{VarName: &node.Identifier{Value: "$c"}}},
 					&expr.Variable{
 						VarName: &expr.FunctionCall{
-							Function: &name.Name{
+							Function: &name.Name{NamespacedName: "",
 								Parts: []node.Node{
 									&name.NamePart{Value: "foo"},
 								},

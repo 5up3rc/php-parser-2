@@ -2522,7 +2522,7 @@ yydefault:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		//line php7/php7.y:307
 		{
-			yyVAL.node = name.NewName(yyDollar[1].list)
+			yyVAL.node = name.NewName(yyDollar[1].list, "")
 			positions.AddPosition(yyVAL.node, positionBuilder.NewNodeListPosition(yyDollar[1].list))
 			comments.AddComments(yyVAL.node, ListGetFirstNodeComments(yyDollar[1].list))
 		}
@@ -2530,7 +2530,7 @@ yydefault:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		//line php7/php7.y:313
 		{
-			yyVAL.node = name.NewRelative(yyDollar[3].list)
+			yyVAL.node = name.NewRelative(yyDollar[3].list, "")
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokenNodeListPosition(yyDollar[1].token, yyDollar[3].list))
 			comments.AddComments(yyVAL.node, yyDollar[1].token.Comments())
 		}
@@ -2538,7 +2538,7 @@ yydefault:
 		yyDollar = yyS[yypt-2 : yypt+1]
 		//line php7/php7.y:319
 		{
-			yyVAL.node = name.NewFullyQualified(yyDollar[2].list)
+			yyVAL.node = name.NewFullyQualified(yyDollar[2].list, "")
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokenNodeListPosition(yyDollar[1].token, yyDollar[2].list))
 			comments.AddComments(yyVAL.node, yyDollar[1].token.Comments())
 		}
@@ -2582,7 +2582,7 @@ yydefault:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		//line php7/php7.y:334
 		{
-			name := name.NewName(yyDollar[2].list)
+			name := name.NewName(yyDollar[2].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[2].list))
 			yyVAL.node = stmt.NewNamespace(name, nil)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokensPosition(yyDollar[1].token, yyDollar[3].token))
@@ -2594,7 +2594,7 @@ yydefault:
 		yyDollar = yyS[yypt-5 : yypt+1]
 		//line php7/php7.y:344
 		{
-			name := name.NewName(yyDollar[2].list)
+			name := name.NewName(yyDollar[2].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[2].list))
 			yyVAL.node = stmt.NewNamespace(name, yyDollar[4].list)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokensPosition(yyDollar[1].token, yyDollar[5].token))
@@ -2664,7 +2664,7 @@ yydefault:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		//line php7/php7.y:393
 		{
-			name := name.NewName(yyDollar[1].list)
+			name := name.NewName(yyDollar[1].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[1].list))
 			yyVAL.node = stmt.NewGroupUse(nil, name, yyDollar[4].list)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewNodeListTokenPosition(yyDollar[1].list, yyDollar[6].token))
@@ -2676,7 +2676,7 @@ yydefault:
 		yyDollar = yyS[yypt-7 : yypt+1]
 		//line php7/php7.y:403
 		{
-			name := name.NewName(yyDollar[2].list)
+			name := name.NewName(yyDollar[2].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[2].list))
 			yyVAL.node = stmt.NewGroupUse(nil, name, yyDollar[5].list)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokensPosition(yyDollar[1].token, yyDollar[7].token))
@@ -2688,7 +2688,7 @@ yydefault:
 		yyDollar = yyS[yypt-6 : yypt+1]
 		//line php7/php7.y:416
 		{
-			name := name.NewName(yyDollar[1].list)
+			name := name.NewName(yyDollar[1].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[1].list))
 			yyVAL.node = stmt.NewGroupUse(nil, name, yyDollar[4].list)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewNodeListTokenPosition(yyDollar[1].list, yyDollar[6].token))
@@ -2700,7 +2700,7 @@ yydefault:
 		yyDollar = yyS[yypt-7 : yypt+1]
 		//line php7/php7.y:426
 		{
-			name := name.NewName(yyDollar[2].list)
+			name := name.NewName(yyDollar[2].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[2].list))
 			yyVAL.node = stmt.NewGroupUse(nil, name, yyDollar[5].list)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewTokensPosition(yyDollar[1].token, yyDollar[7].token))
@@ -2760,7 +2760,7 @@ yydefault:
 		yyDollar = yyS[yypt-1 : yypt+1]
 		//line php7/php7.y:466
 		{
-			name := name.NewName(yyDollar[1].list)
+			name := name.NewName(yyDollar[1].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[1].list))
 			yyVAL.node = stmt.NewUse(nil, name, nil)
 			positions.AddPosition(yyVAL.node, positionBuilder.NewNodeListPosition(yyDollar[1].list))
@@ -2772,7 +2772,7 @@ yydefault:
 		yyDollar = yyS[yypt-3 : yypt+1]
 		//line php7/php7.y:476
 		{
-			name := name.NewName(yyDollar[1].list)
+			name := name.NewName(yyDollar[1].list, "")
 			positions.AddPosition(name, positionBuilder.NewNodeListPosition(yyDollar[1].list))
 			alias := node.NewIdentifier(yyDollar[3].token.Value)
 			positions.AddPosition(alias, positionBuilder.NewTokenPosition(yyDollar[3].token))
