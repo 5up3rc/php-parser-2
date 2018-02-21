@@ -2,6 +2,7 @@
 package php7
 
 import (
+	"github.com/z7zmey/php-parser/node/name"
 	"io"
 
 	"github.com/z7zmey/php-parser/comment"
@@ -15,6 +16,7 @@ var rootnode node.Node
 var comments comment.Comments
 var positions position.Positions
 var positionBuilder position.Builder
+var namespace string
 
 // Parse the php7 parser entrypoint
 func Parse(src io.Reader, fName string) (node.Node, comment.Comments, position.Positions) {
@@ -24,6 +26,7 @@ func Parse(src io.Reader, fName string) (node.Node, comment.Comments, position.P
 	comments = comment.Comments{}
 	positions = position.Positions{}
 	positionBuilder = position.Builder{&positions}
+	namespace = ""
 	yyParse(newLexer(src, fName))
 	return rootnode, comments, positions
 }
@@ -37,6 +40,20 @@ func ListGetFirstNodeComments(list []node.Node) []comment.Comment {
 	node := list[0]
 
 	return comments[node]
+}
+
+func joinNamespaceParts(list []node.Node) string {
+	NSName := ""
+
+	for _, part := range list {
+		if NSName == "" {
+			NSName = NSName + part.(*name.NamePart).Value
+		} else {
+			NSName = NSName + "\\" + part.(*name.NamePart).Value
+		}
+	}
+
+	return NSName
 }
 
 type foreachVariable struct {

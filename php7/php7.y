@@ -305,19 +305,33 @@ namespace_name:
 name:
     namespace_name
         {
-            $$ = name.NewName($1, "")
+            var NSName string
+            if namespace != "" {
+                NSName = namespace + "\\" + joinNamespaceParts($1)
+            } else {
+                NSName = joinNamespaceParts($1)
+            }
+            
+            $$ = name.NewName($1, NSName)
             positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
             comments.AddComments($$, ListGetFirstNodeComments($1))
         }
     | T_NAMESPACE T_NS_SEPARATOR namespace_name
         {
-            $$ = name.NewRelative($3, "")
+            var NSName string
+            if namespace != "" {
+                NSName = namespace + "\\" + joinNamespaceParts($3)
+            } else {
+                NSName = joinNamespaceParts($3)
+            }
+
+            $$ = name.NewRelative($3, NSName)
             positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $3))
             comments.AddComments($$, $1.Comments())
         }
     | T_NS_SEPARATOR namespace_name
         {
-            $$ = name.NewFullyQualified($2, "")
+            $$ = name.NewFullyQualified($2, joinNamespaceParts($2))
             positions.AddPosition($$, positionBuilder.NewTokenNodeListPosition($1, $2))
             comments.AddComments($$, $1.Comments())
         }
@@ -332,7 +346,9 @@ top_statement:
     |   T_HALT_COMPILER '(' ')' ';'                     { $$ = stmt.NewHaltCompiler() }
     |   T_NAMESPACE namespace_name ';'
         {
-            name := name.NewName($2, "")
+            namespace = joinNamespaceParts($2)
+
+            name := name.NewName($2, joinNamespaceParts($2))
             positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
             $$ = stmt.NewNamespace(name, nil)
             positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $3))
@@ -340,18 +356,22 @@ top_statement:
             comments.AddComments(name, ListGetFirstNodeComments($2))
             comments.AddComments($$, $1.Comments())
         }
-    |   T_NAMESPACE namespace_name '{' top_statement_list '}'
+    |   T_NAMESPACE namespace_name { namespace = joinNamespaceParts($2) } '{' top_statement_list '}'
         {
-            name := name.NewName($2, "")
+            name := name.NewName($2, joinNamespaceParts($2))
             positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
-            $$ = stmt.NewNamespace(name, $4)
-            positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $5))
+            $$ = stmt.NewNamespace(name, $5)
+            positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $6))
 
             comments.AddComments(name, ListGetFirstNodeComments($2))
             comments.AddComments($$, $1.Comments())
+
+            namespace = ""
         }
     |   T_NAMESPACE '{' top_statement_list '}'
         {
+            namespace = ""
+
             $$ = stmt.NewNamespace(nil, $3)
             positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $4))
             comments.AddComments($$, $1.Comments())
@@ -391,7 +411,7 @@ use_type:
 group_use_declaration:
         namespace_name T_NS_SEPARATOR '{' unprefixed_use_declarations possible_comma '}'
             {
-                name := name.NewName($1, "")
+                name := name.NewName($1, namespace + "\\" + joinNamespaceParts($1))
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 $$ = stmt.NewGroupUse(nil, name, $4)
                 positions.AddPosition($$, positionBuilder.NewNodeListTokenPosition($1, $6))
@@ -401,7 +421,7 @@ group_use_declaration:
             }
     |   T_NS_SEPARATOR namespace_name T_NS_SEPARATOR '{' unprefixed_use_declarations possible_comma '}'
             {
-                name := name.NewName($2, "")
+                name := name.NewName($2, namespace + "\\" + joinNamespaceParts($2))
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewGroupUse(nil, name, $5)
                 positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $7))
@@ -414,7 +434,7 @@ group_use_declaration:
 mixed_group_use_declaration:
         namespace_name T_NS_SEPARATOR '{' inline_use_declarations possible_comma '}'
             {
-                name := name.NewName($1, "")
+                name := name.NewName($1, namespace + "\\" + joinNamespaceParts($1))
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
                 $$ = stmt.NewGroupUse(nil, name, $4)
                 positions.AddPosition($$, positionBuilder.NewNodeListTokenPosition($1, $6))
@@ -424,7 +444,7 @@ mixed_group_use_declaration:
             }
     |   T_NS_SEPARATOR namespace_name T_NS_SEPARATOR '{' inline_use_declarations possible_comma '}'
             {
-                name := name.NewName($2, "")
+                name := name.NewName($2, namespace + "\\" + joinNamespaceParts($2))
                 positions.AddPosition(name, positionBuilder.NewNodeListPosition($2))
                 $$ = stmt.NewGroupUse(nil, name, $5)
                 positions.AddPosition($$, positionBuilder.NewTokensPosition($1, $7))
@@ -464,7 +484,7 @@ inline_use_declaration:
 unprefixed_use_declaration:
     namespace_name
         {
-            name := name.NewName($1, "")
+            name := name.NewName($1, namespace + "\\" + joinNamespaceParts($1))
             positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
             $$ = stmt.NewUse(nil, name, nil)
             positions.AddPosition($$, positionBuilder.NewNodeListPosition($1))
@@ -474,7 +494,7 @@ unprefixed_use_declaration:
         }
     |   namespace_name T_AS T_STRING
         {
-            name := name.NewName($1, "")
+            name := name.NewName($1, namespace + "\\" + joinNamespaceParts($1))
             positions.AddPosition(name, positionBuilder.NewNodeListPosition($1))
             alias := node.NewIdentifier($3.Value)
             positions.AddPosition(alias, positionBuilder.NewTokenPosition($3))
